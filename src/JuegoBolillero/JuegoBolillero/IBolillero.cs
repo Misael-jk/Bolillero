@@ -1,6 +1,6 @@
 ﻿namespace JuegoBolillero;
 
-internal interface IBolillero
+public interface IBolillero
 {
     int GenerarAleatorio(int mini, int maxi);
 }
