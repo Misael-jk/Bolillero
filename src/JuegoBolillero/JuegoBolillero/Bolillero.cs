@@ -1,6 +1,6 @@
 ﻿namespace JuegoBolillero;
 
-internal class Bolillero
+public class Bolillero
 {
     private List<int> _bolillasAdentro = new();
     public IReadOnlyCollection<int> BolillasAdentro => _bolillasAdentro.AsReadOnly();
@@ -10,9 +10,9 @@ internal class Bolillero
 
     private IBolillero _generarAleatorio;
 
-    public Bolillero(List<int> Bolillas, IBolillero generarAleatorio)
+    public Bolillero(int cantidadBolillas, IBolillero generarAleatorio)
     {
-        _bolillasAdentro = Bolillas;
+        _bolillasAdentro = Enumerable.Range(0, cantidadBolillas).ToList();
         _generarAleatorio = generarAleatorio;
     }
 

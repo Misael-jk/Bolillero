@@ -1,6 +1,6 @@
 ﻿namespace JuegoBolillero;
 
-internal class GenerarAleatorio : IBolillero
+public class GenerarAleatorio : IBolillero
 {
     int IBolillero.GenerarAleatorio(int mini, int maxi)
     {
@@ -9,4 +9,13 @@ internal class GenerarAleatorio : IBolillero
 
         return num;
     }
+}
+
+public class GeneradorPrimero : IBolillero
+{
+    public int GenerarAleatorio(int mini, int maxi)
+    {
+        return mini;
+    }
+
 }
