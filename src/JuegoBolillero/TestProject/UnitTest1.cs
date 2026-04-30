@@ -2,27 +2,22 @@ using JuegoBolillero;
 
 namespace TestProject
 {
-    public class UnitTest1
+    public class BolilleroTest
     {
         private readonly Bolillero _bolillero;
-
-        public UnitTest1()
+        public BolilleroTest()
         {
-            var generadorPrimero = new GeneradorPrimero();
-            _bolillero = new Bolillero(10, generadorPrimero);
+            var generarPrimero = new GeneradorPrimero();
+            _bolillero = new Bolillero(10, generarPrimero);
         }
 
         [Fact]
         public void SacarBolilla()
         {
-            // Tendria que devolver la bola 0
-            int bolilla = _bolillero.SacarBolilla();
+            var bolilla = _bolillero.SacarBolilla();
+
             Assert.Equal(0, bolilla);
-
-            // Tendria que ver 9 bolitas en total
             Assert.Equal(9, _bolillero.BolillasAdentro.Count);
-
-            // Verifica que afuera del bolillero hay una bolilla
             Assert.Single(_bolillero.BolillasFuera);
         }
 
@@ -32,32 +27,34 @@ namespace TestProject
             _bolillero.SacarBolilla();
             _bolillero.Revocar();
 
-            // En este punto deberia haber 10 bolillas dentro
             Assert.Equal(10, _bolillero.BolillasAdentro.Count);
-
-            // Aca no tiene que haber 0 bolitas afuera
-            Assert.Equal(0, _bolillero.BolillasFuera.Count);
+            Assert.Empty(_bolillero.BolillasFuera);
         }
 
         [Fact]
         public void JugarGana()
         {
-            bool resultado = _bolillero.Jugar(new List<int> { 0, 1, 2, 3 });
-            Assert.True(resultado);
+            var jugada = new List<int> { 0, 1, 2, 3 };
+
+            Assert.True(_bolillero.Jugar(jugada));
         }
 
         [Fact]
         public void JugarPierde()
         {
-            bool resultado = _bolillero.Jugar(new List<int> { 4, 2, 1 });
-            Assert.False(resultado);
+            var jugada = new List<int> { 4, 2, 1 };
+
+            Assert.False(_bolillero.Jugar(jugada));
         }
 
         [Fact]
         public void GanarNVeces()
         {
-            int ganadas = _bolillero.JugarNVeces(new List<int> { 0, 1 }, 1);
-            Assert.Equal(1, ganadas);
+            var jugada = new List<int> { 0, 1 };
+
+            var resultado = _bolillero.JugarNVeces(jugada, 1);
+
+            Assert.Equal(1, resultado);
         }
     }
 }
