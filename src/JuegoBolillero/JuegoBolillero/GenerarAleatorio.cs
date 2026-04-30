@@ -10,3 +10,11 @@ public class GenerarAleatorio : IBolillero
         return num;
     }
 }
+
+public class Primero : IBolillero
+{
+    public int GenerarAleatorio(int mini, int maxi)
+    {
+        return mini;
+    }
+}

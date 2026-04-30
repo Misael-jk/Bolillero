@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuegoBolillero", "JuegoBolillero\JuegoBolillero.csproj", "{982A9307-45AE-4839-A44B-E7EA933C544E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBolillero", "TestBolillero\TestBolillero.csproj", "{9F3F5DC4-49D7-4666-BC0D-2D6B5551917A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{982A9307-45AE-4839-A44B-E7EA933C544E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{982A9307-45AE-4839-A44B-E7EA933C544E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{982A9307-45AE-4839-A44B-E7EA933C544E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F3F5DC4-49D7-4666-BC0D-2D6B5551917A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F3F5DC4-49D7-4666-BC0D-2D6B5551917A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F3F5DC4-49D7-4666-BC0D-2D6B5551917A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F3F5DC4-49D7-4666-BC0D-2D6B5551917A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
