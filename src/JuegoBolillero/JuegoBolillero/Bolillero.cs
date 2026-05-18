@@ -1,6 +1,8 @@
-﻿namespace JuegoBolillero;
+﻿using System;
 
-public class Bolillero
+namespace JuegoBolillero;
+
+public class Bolillero : IClonable
 {
     private List<int> _bolillasAdentro = new();
     public IReadOnlyCollection<int> BolillasAdentro => _bolillasAdentro.AsReadOnly();
@@ -10,9 +12,12 @@ public class Bolillero
 
     private IBolillero _generarAleatorio;
 
-    public Bolillero(int cantidadBolillas, IBolillero generarAleatorio)
+    public Bolillero(int n, IBolillero generarAleatorio)
     {
-        _bolillasAdentro = Enumerable.Range(0, cantidadBolillas).ToList();
+        if (n < 0)
+            throw new ArgumentException("N debe ser mayor o igual a 0.");
+
+        _bolillasAdentro = Enumerable.Range(0, n).ToList();
         _generarAleatorio = generarAleatorio;
     }
 
@@ -20,7 +25,7 @@ public class Bolillero
     {
         var numero = _generarAleatorio.GenerarAleatorio(0, _bolillasAdentro.Count);
         var bolilla = _bolillasAdentro[numero];
-        _bolillasAdentro.RemoveAt(bolilla);
+        _bolillasAdentro.RemoveAt(numero);
         _bolillasFuera.Add(bolilla);
 
         return bolilla;
@@ -37,11 +42,11 @@ public class Bolillero
         if (_bolillasAdentro.Count == 0)
             return true;
 
-        foreach(var bolillas in jugada)
+        foreach (var bolillas in jugada)
         {
             int sacada = SacarBolilla();
 
-            if(sacada != bolillas)
+            if (sacada != bolillas)
             {
                 Revocar();
                 return false;
@@ -52,18 +57,28 @@ public class Bolillero
         return true;
     }
 
-    public int JugarNVeces(List<int> jugada, int cantidadVeces)
+    public long JugarNVeces(List<int> jugada, int cantidadVeces)
     {
-        int acierto = 0;
+        long acierto = 0;
 
-        for(int i = 0; i < cantidadVeces; i++)
+        for (int i = 0; i < cantidadVeces; i++)
         {
-            if(Jugar(jugada))
+            if (Jugar(jugada))
             {
-                return acierto++;
+                acierto++;
             }
         }
 
         return acierto;
+    }
+
+    public object Clonar()
+    {
+        Bolillero clon = new Bolillero(_bolillasAdentro.Count + _bolillasFuera.Count, _generarAleatorio);
+
+        clon._bolillasFuera = new List<int>(_bolillasFuera);
+        clon._bolillasAdentro = new List<int>(_bolillasAdentro);
+
+        return clon;
     }
 }
